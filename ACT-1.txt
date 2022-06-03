@@ -1,0 +1,32 @@
+Exercice 1: XPath
+
+Fichier: cd.xml, cd.dtd
+
+    Question 1: toutes les compositions
+
+    //composition
+    (autre solution) /CDlist/CD/performance/composition
+
+
+    Question 2: toutes les compositions ayant un "soloist"
+
+    //performance[soloist]/composition
+
+    Question 3: toutes les performances avec un seul "orchestra" mais pas de "soloist"
+
+    //performance[not(soloist) and orchestra]
+
+    Remarque : la DTD nous assure qu'il ne peut pas y avoir plus d'un orchestra
+
+    Question 4: tous les soloists ayant joué avec le London Symphony Orchestra sur un CD publié par Deutsche Grammophon
+
+    /CDlist/CD[publisher="Deutsche Grammophon"]/performance[orchestra="London Symphony Orchestra"]/soloist
+
+    Question 5: tous les CDs comportant des performances du London Symphony Orchestra
+
+    /CDlist/CD[performance[orchestra="London Symphony Orchestra"] ]
+
+    Cette réponse, bien qu'acceptée par Firefox, n'est pas conforme à la recommandation XSLT vue en cours (l'imbrication des [] n'est pas autorisée). Il faut lui préférer :
+
+    /CDlist/CD/performance[orchestra="London Symphony Orchestra"]/parent::CD
+
